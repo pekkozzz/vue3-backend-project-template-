@@ -5,9 +5,9 @@ import { updateCurrentHref, generateUrl } from './location'
 */
 
 // 跳转到面客端登录
-export function toCustomerLogin() {
-  const url = generateUrl(import.meta.env.VITE_CUSTOMER_LOGIN, 'login/sms', {
-    redirect: encodeURIComponent(window.location.href)
+export function toBackendLogin() {
+  const url = generateUrl(import.meta.env.VITE_BACKEND_LOGIN, '', {
+    redirectUrl: encodeURIComponent(window.location.href)
   })
   updateCurrentHref(url)
 }

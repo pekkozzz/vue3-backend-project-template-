@@ -8,7 +8,7 @@
 6，模块化管理
 */
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
-import { toCustomerLogin } from './jump'
+import { toBackendLogin } from './jump'
 
 const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_KALAMINI_API,
@@ -42,7 +42,7 @@ instance.interceptors.response.use(
     if (res.code !== 200) {
       if (res.code === 401) {
         console.log('未登录')
-        toCustomerLogin()
+        toBackendLogin()
       }
       return Promise.reject(new Error(res.message || '未知错误'))
     }
@@ -52,7 +52,7 @@ instance.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          toCustomerLogin()
+          toBackendLogin()
           break
         case 404:
           console.error('请求的资源不存在')
